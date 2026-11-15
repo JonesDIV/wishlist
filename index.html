@@ -290,7 +290,6 @@
         <h2 id="hello"></h2>
         <p class="lede">Five quick questions, answered honestly. Father Christmas is watching.</p>
         <div class="nav"><button class="btn primary" id="start">Begin</button></div>
-        <button class="link hidden" id="skip">Skip straight to the list</button>
       </div>
     </section>
 
@@ -485,7 +484,6 @@ function renderNames(){
 function signIn(name){
   me=name; store.set("me",name); renderWho();
   $("hello").textContent = name==="Daisy" ? "Hello Daisy (testing mode)" : `Merry Christmas, ${name}`;
-  $("skip").classList.toggle("hidden", !store.get("done"));
   go("s-intro");
 }
 function renderWho(){
@@ -575,7 +573,6 @@ function hideSure(body){ const d=body.querySelector(".sure"); if(d) d.remove(); 
 function setQuip(t){ const q=$("quip"); q.textContent=""; void q.offsetWidth; q.textContent=t; }
 
 $("start").onclick=()=>{ step=0; renderStep(false); go("s-quiz"); };
-$("skip").onclick=()=>{ showAll=true; renderResults(); go("s-results"); };
 $("back").onclick=()=>{ if(step>0){ step--; renderStep(true); } };
 $("next").onclick=()=>{
   if(step<QUESTIONS.length-1){ step++; renderStep(true); }
